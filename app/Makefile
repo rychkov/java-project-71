@@ -9,4 +9,7 @@ build:
 run-dist:
 	./build/install/app/bin/app
 
+help: build
+	./build/install/app/bin/app --help
+
 .PHONY: run build

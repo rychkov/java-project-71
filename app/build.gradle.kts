@@ -1,3 +1,8 @@
+import org.gradle.kotlin.dsl.annotationProcessor
+import org.gradle.kotlin.dsl.implementation
+import org.gradle.api.tasks.compile.JavaCompile
+
+
 plugins {
     id("com.github.ben-manes.versions") version "0.53.0"
     id("com.diffplug.spotless") version "8.1.0"
@@ -5,6 +10,7 @@ plugins {
 
     application
     checkstyle
+    `java-library`
     // jacoco
 //    alias(libs.plugins.spotless)
 //    alias(libs.plugins.lombok)
@@ -28,11 +34,20 @@ tasks.getByName("run", JavaExec::class) {
 
 sonar {
     properties {
-        property("sonar.projectKey", "rychkov_java-project-61")
+        property("sonar.projectKey", "rychkov_java-project-71")
         property("sonar.organization", "rychkov")
     }
 }
 
 checkstyle {
     toolVersion = "10.12.4"
+}
+
+tasks.named<JavaCompile>("compileJava") {
+    options.compilerArgs.add("-Aproject=${project.group}/${project.name}")
+}
+
+dependencies {
+    implementation("info.picocli:picocli:4.7.7")
+    annotationProcessor("info.picocli:picocli-codegen:4.7.7")
 }
