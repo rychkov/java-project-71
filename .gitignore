@@ -1,0 +1,6 @@
+/.github/
+/.idea/
+app.iml
+/app/.gradle/
+/app/build/
+/app/target/
