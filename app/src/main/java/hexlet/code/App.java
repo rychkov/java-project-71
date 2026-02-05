@@ -1,7 +1,5 @@
 package hexlet.code;
 
-import static picocli.CommandLine.Help.Visibility.ALWAYS;
-
 import java.io.File;
 import java.util.concurrent.Callable;
 import picocli.CommandLine;
