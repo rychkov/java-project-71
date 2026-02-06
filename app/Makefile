@@ -12,4 +12,7 @@ run-dist:
 help: build
 	./build/install/app/bin/app --help
 
+diff: build
+	./build/install/app/bin/app ../file1.json ../file2.json
+
 .PHONY: run build

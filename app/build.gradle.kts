@@ -50,4 +50,5 @@ tasks.named<JavaCompile>("compileJava") {
 dependencies {
     implementation("info.picocli:picocli:4.7.7")
     annotationProcessor("info.picocli:picocli-codegen:4.7.7")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.21.0")
 }
