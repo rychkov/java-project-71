@@ -9,8 +9,11 @@ build: lint test
 test:
 	./gradlew test
 
+report:
+	./gradlew jacocoTestReport
+
 lint:
-	./gradlew checkstyleMain
+	./gradlew spotlessApply
 
 run-dist:
 	./build/install/app/bin/app
