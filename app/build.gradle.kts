@@ -40,6 +40,9 @@ sonar {
         // Путь к XML отчету JaCoCo
         property("sonar.coverage.jacoco.xmlReportPaths",
             "${project.layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml")
+        property("sonar.java.checkstyle.reportPaths",
+            "${project.layout.buildDirectory.get()}/reports/checkstyle/main.xml")
+
     }
 }
 
@@ -64,6 +67,7 @@ tasks.jacocoTestReport {
 }
 
 tasks.named("sonar") {
+    dependsOn(tasks.test)
     dependsOn(tasks.jacocoTestReport)
 }
 
