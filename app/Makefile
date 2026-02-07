@@ -23,5 +23,12 @@ help: build
 
 diff: build
 	./build/install/app/bin/app ../file1.json ../file2.json
+	./build/install/app/bin/app ../file1.json ../file2.json -f=plain
+	./build/install/app/bin/app ../file1.json ../file2.json -f=json
+	./build/install/app/bin/app src/test/resources/fixtures/complex/file1.json src/test/resources/fixtures/complex/file2.json
+	./build/install/app/bin/app src/test/resources/fixtures/complex/file1.json src/test/resources/fixtures/complex/file2.json -f=plain
+	./build/install/app/bin/app src/test/resources/fixtures/complex/file1.json src/test/resources/fixtures/complex/file2.json -f=json
+
+
 
 .PHONY: run build test

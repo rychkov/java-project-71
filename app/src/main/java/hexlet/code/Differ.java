@@ -1,21 +1,22 @@
 package hexlet.code;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class Differ {
-  public static String generate(String file1, String file2) throws Exception {
+  public static String generate(String file1, String file2, String format) throws Exception {
     Map data1 = Parser.getData(file1);
     Map data2 = Parser.getData(file2);
-
-    StringBuffer result = new StringBuffer();
-    result.append("{\n");
 
     Set<String> keys = new TreeSet<>();
     keys.addAll(data1.keySet());
     keys.addAll(data2.keySet());
+
+    List<DiffNode> diffList = new ArrayList<>();
 
     for (String key : keys) {
       boolean inFirst = data1.containsKey(key);
@@ -26,23 +27,16 @@ public class Differ {
         Object value2 = data2.get(key);
 
         if (Objects.equals(value1, value2)) {
-          result.append(format(" ", key, value1));
+          diffList.add(new DiffNode(key, Status.UNCHANGED, value1, value2));
         } else {
-          result.append(format("-", key, value1));
-          result.append(format("+", key, value2));
+          diffList.add(new DiffNode(key, Status.CHANGED, value1, value2));
         }
       } else if (inFirst) {
-        result.append(format("-", key, data1.get(key)));
+        diffList.add(new DiffNode(key, Status.REMOVED, data1.get(key), null));
       } else {
-        result.append(format("+", key, data2.get(key)));
+        diffList.add(new DiffNode(key, Status.ADDED, null, data2.get(key)));
       }
     }
-
-    result.append("}\n");
-    return result.toString();
-  }
-
-  private static String format(String sign, String key, Object value) {
-    return String.format("  %s %s: %s%n", sign, key, value);
+    return Formatter.format(diffList, format);
   }
 }
