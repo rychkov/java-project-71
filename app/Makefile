@@ -23,29 +23,26 @@ help: build
 
 diff: build
 	clear
-	echo "File file1.json"
+	printf "File file1.json\n"
 	cat ../file1.json
-	echo "File file2.json"
+	printf "File file2.json\n"
 	cat ../file2.json
-	echo "Diff"
+	printf "\nDiff\n"
 	./build/install/app/bin/app ../file1.json ../file2.json
-	echo "Diff in plain format"
+	printf "\nDiff in plain format\n"
 	./build/install/app/bin/app ../file1.json ../file2.json -f=plain
-	echo "Diff in JSON"
+	printf "\nDiff in JSON\n"
 	./build/install/app/bin/app ../file1.json ../file2.json -f=json
-
-	echo "Complex case"
-	echo "File file1.json"
+	printf "\nComplex case\n"
+	printf "\nFile file1.json\n"
 	cat src/test/resources/fixtures/complex/file1.json
-	echo "File file2.json"
+	printf "\nFile file2.json\n"
 	cat src/test/resources/fixtures/complex/file1.json
-	echo "Diff"
+	printf "\nDiff\n"
 	./build/install/app/bin/app src/test/resources/fixtures/complex/file1.json src/test/resources/fixtures/complex/file2.json
-	echo "Diff in plain format"
+	printf "\nDiff in plain format\n"
 	./build/install/app/bin/app src/test/resources/fixtures/complex/file1.json src/test/resources/fixtures/complex/file2.json -f=plain
-	echo "Diff in JSON format"
+	printf "\nDiff in JSON format\n"
 	./build/install/app/bin/app src/test/resources/fixtures/complex/file1.json src/test/resources/fixtures/complex/file2.json -f=json
-
-
 
 .PHONY: run build test
