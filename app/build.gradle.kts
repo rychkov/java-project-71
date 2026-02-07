@@ -40,14 +40,19 @@ sonar {
         // Путь к XML отчету JaCoCo
         property("sonar.coverage.jacoco.xmlReportPaths",
             "${project.layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml")
+        // Перечисляем пути к отчетам через запятую
         property("sonar.java.checkstyle.reportPaths",
-            "${project.layout.buildDirectory.get()}/reports/checkstyle/main.xml")
-
+            "${project.layout.buildDirectory.get()}/reports/checkstyle/main.xml," +
+            "${project.layout.buildDirectory.get()}/reports/checkstyle/test.xml")
     }
 }
 
 checkstyle {
     toolVersion = "10.12.4"
+    // Игнорировать ошибки, чтобы сборка не падала сразу (на ваше усмотрение)
+    isIgnoreFailures = false
+    // Показывать ошибки в консоли
+    isShowViolations = true
 }
 
 tasks.named<JavaCompile>("compileJava") {
@@ -69,6 +74,8 @@ tasks.jacocoTestReport {
 tasks.named("sonar") {
     dependsOn(tasks.test)
     dependsOn(tasks.jacocoTestReport)
+    dependsOn("checkstyleMain")
+    dependsOn("checkstyleTest")
 }
 
 dependencies {
