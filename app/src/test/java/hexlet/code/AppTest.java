@@ -35,10 +35,10 @@ class AppTest {
 
   @ParameterizedTest
   @MethodSource("filePairsProvider")
-  void testDiff(String file1, String file2, String diff) throws IOException {
+  void testDiff(String file1, String file2, String diff, String format) throws IOException {
     String expected = readFixture(diff);
 
-    App.main(new String[]{file1, file2});
+    App.main(new String[]{file1, file2, format});
 
     assertEquals(expected, output.toString(StandardCharsets.UTF_8).trim());
   }
@@ -48,22 +48,38 @@ class AppTest {
         Arguments.of(
             FIXTURES_PATH + "file1.json",
             FIXTURES_PATH + "file2.json",
-            "diff1_2.txt"
+            "diff1_2.txt",
+            "-f=stylish"
         ),
         Arguments.of(
             FIXTURES_PATH + "file1.yaml",
             FIXTURES_PATH + "file2.yaml",
-            "diff1_2.txt"
+            "diff1_2.txt",
+            "-f=stylish"
         ),
         Arguments.of(
             FIXTURES_PATH + COMPLEX + "file1.json",
             FIXTURES_PATH + COMPLEX + "file2.json",
-            COMPLEX + "diff1_2.txt"
+            COMPLEX + "diff1_2.txt",
+            "-f=stylish"
         ),
         Arguments.of(
             FIXTURES_PATH + COMPLEX + "file1.yaml",
             FIXTURES_PATH + COMPLEX + "file2.yaml",
-            COMPLEX + "diff1_2.txt"
+            COMPLEX + "diff1_2.txt",
+            "-f=stylish"
+        ),
+        Arguments.of(
+            FIXTURES_PATH + COMPLEX + "file1.yaml",
+            FIXTURES_PATH + COMPLEX + "file2.yaml",
+            COMPLEX + "diff1_2_plain.txt",
+            "-f=plain"
+        ),
+        Arguments.of(
+            FIXTURES_PATH + COMPLEX + "file1.yaml",
+            FIXTURES_PATH + COMPLEX + "file2.yaml",
+            COMPLEX + "diff1_2_json.txt",
+            "-f=json"
         )
     );
   }
