@@ -1,17 +1,14 @@
 package hexlet.code;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class Differ {
-  private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-
   public static String generate(String file1, String file2) throws Exception {
-    Map data1 = getData(file1);
-    Map data2 = getData(file2);
+    Map data1 = Parser.getData(file1);
+    Map data2 = Parser.getData(file2);
 
     StringBuffer result = new StringBuffer();
     result.append("{\n");
@@ -47,10 +44,5 @@ public class Differ {
 
   private static String format(String sign, String key, Object value) {
     return String.format("  %s %s: %s%n", sign, key, value);
-  }
-
-  // метод parse может выбросить исключение, пробросим его выше
-  public static Map getData(String content) throws Exception {
-    return OBJECT_MAPPER.readValue(content, Map.class);
   }
 }

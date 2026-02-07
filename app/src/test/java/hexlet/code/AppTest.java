@@ -28,14 +28,23 @@ class AppTest {
   }
 
   @Test
-  void  testMain() throws IOException {
+  void testDiffJson() throws IOException {
     String fileName1 = FIXTURES_PATH + "file1.json";
     String fileName2 = FIXTURES_PATH + "file2.json";
     String result = readFixture("diff1_2.txt");
 
     App.main(new String[]{fileName1, fileName2});
     assertEquals(result, output.toString(StandardCharsets.UTF_8).trim());
+  }
 
+  @Test
+  void testDiffYaml() throws IOException {
+    String fileName1 = FIXTURES_PATH + "file1.yaml";
+    String fileName2 = FIXTURES_PATH + "file2.yaml";
+    String result = readFixture("diff1_2.txt");
+
+    App.main(new String[]{fileName1, fileName2});
+    assertEquals(result, output.toString(StandardCharsets.UTF_8).trim());
   }
 
   private String readFixture(String fileName) throws IOException {

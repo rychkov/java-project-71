@@ -55,6 +55,7 @@ dependencies {
     implementation("info.picocli:picocli:4.7.7")
     annotationProcessor("info.picocli:picocli-codegen:4.7.7")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.21.0")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.21.0")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
