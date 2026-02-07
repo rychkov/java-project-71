@@ -36,6 +36,10 @@ sonar {
     properties {
         property("sonar.projectKey", "rychkov_java-project-71")
         property("sonar.organization", "rychkov")
+
+        // Путь к XML отчету JaCoCo
+        property("sonar.coverage.jacoco.xmlReportPaths",
+            "${project.layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml")
     }
 }
 
@@ -49,6 +53,18 @@ tasks.named<JavaCompile>("compileJava") {
 
 tasks.named<Test>("test") {
     useJUnitPlatform()
+}
+
+tasks.jacocoTestReport {
+    reports {
+        xml.required.set(true)
+        csv.required.set(false)
+        html.required.set(true)
+    }
+}
+
+tasks.named("sonar") {
+    dependsOn(tasks.jacocoTestReport)
 }
 
 dependencies {
