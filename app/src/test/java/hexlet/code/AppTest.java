@@ -38,7 +38,7 @@ class AppTest {
   void testDiff(String file1, String file2, String diff, String format) throws IOException {
     String expected = readFixture(diff);
 
-    App.main(new String[]{file1, file2, format});
+    App.main(new String[]{"-f", format, file1, file2});
 
     assertEquals(expected, output.toString(StandardCharsets.UTF_8).trim());
   }
@@ -49,37 +49,37 @@ class AppTest {
             FIXTURES_PATH + "file1.json",
             FIXTURES_PATH + "file2.json",
             "diff1_2.txt",
-            "-f=stylish"
+            "stylish"
         ),
         Arguments.of(
             FIXTURES_PATH + "file1.yaml",
             FIXTURES_PATH + "file2.yaml",
             "diff1_2.txt",
-            "-f=stylish"
+            "stylish"
         ),
         Arguments.of(
             FIXTURES_PATH + COMPLEX + "file1.json",
             FIXTURES_PATH + COMPLEX + "file2.json",
             COMPLEX + "diff1_2.txt",
-            "-f=stylish"
+            "stylish"
         ),
         Arguments.of(
             FIXTURES_PATH + COMPLEX + "file1.yaml",
             FIXTURES_PATH + COMPLEX + "file2.yaml",
             COMPLEX + "diff1_2.txt",
-            "-f=stylish"
+            "stylish"
         ),
         Arguments.of(
             FIXTURES_PATH + COMPLEX + "file1.yaml",
             FIXTURES_PATH + COMPLEX + "file2.yaml",
             COMPLEX + "diff1_2_plain.txt",
-            "-f=plain"
+            "plain"
         ),
         Arguments.of(
             FIXTURES_PATH + COMPLEX + "file1.yaml",
             FIXTURES_PATH + COMPLEX + "file2.yaml",
             COMPLEX + "diff1_2_json.txt",
-            "-f=json"
+            "json"
         )
     );
   }
