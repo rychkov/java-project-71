@@ -14,3 +14,7 @@ filepath2         path to second file
 -h, --help            Show this help message and exit.
 -V, --version         Print version information and exit.
 ```
+
+# Demo
+
+https://asciinema.org/a/tlymC5dIasTxtSRG
