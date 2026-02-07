@@ -11,7 +11,7 @@ plugins {
     application
     checkstyle
     `java-library`
-    // jacoco
+     jacoco
 //    alias(libs.plugins.spotless)
 //    alias(libs.plugins.lombok)
 //    alias(libs.plugins.shadow)
@@ -47,8 +47,15 @@ tasks.named<JavaCompile>("compileJava") {
     options.compilerArgs.add("-Aproject=${project.group}/${project.name}")
 }
 
+tasks.named<Test>("test") {
+    useJUnitPlatform()
+}
+
 dependencies {
     implementation("info.picocli:picocli:4.7.7")
     annotationProcessor("info.picocli:picocli-codegen:4.7.7")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.21.0")
+
+    testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }

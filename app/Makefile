@@ -1,10 +1,16 @@
-run: clean build run-dist
+run: clean build test run-dist
 
 clean:
 	./gradlew clean
 
-build:
+build: lint test
 	./gradlew installDist
+
+test:
+	./gradlew test
+
+lint:
+	./gradlew checkstyleMain
 
 run-dist:
 	./build/install/app/bin/app
@@ -15,4 +21,4 @@ help: build
 diff: build
 	./build/install/app/bin/app ../file1.json ../file2.json
 
-.PHONY: run build
+.PHONY: run build test
