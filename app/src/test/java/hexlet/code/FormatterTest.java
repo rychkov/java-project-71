@@ -14,7 +14,7 @@ class FormatterTest {
             Formatter.format(Collections.emptyList(), "invalid")
         );
     }
-
+// JaCoCo has issues with ParameterizedTest
 //    @ParameterizedTest
 //    @CsvSource({
 //        Formatter.PLAIN + ", ''",       // Ожидаем пустую строку для plain

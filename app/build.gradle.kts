@@ -61,8 +61,15 @@ tasks.named<JavaCompile>("compileJava") {
 
 tasks.named<Test>("test") {
     useJUnitPlatform()
+
+    outputs.upToDateWhen { false }
+
+    finalizedBy(tasks.jacocoTestReport)
 }
 
+jacoco {
+    toolVersion = "0.8.11"
+}
 tasks.jacocoTestReport {
     reports {
         xml.required.set(true)

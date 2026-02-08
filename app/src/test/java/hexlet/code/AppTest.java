@@ -9,13 +9,9 @@ import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.stream.Stream;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 
 class AppTest {
 
@@ -34,8 +30,6 @@ class AppTest {
         System.setOut(standardOut);
     }
 
-    @ParameterizedTest
-    @MethodSource("filePairsProvider")
     void testDiff(String file1, String file2, String diff, String format) throws IOException {
         String expected = readFixture(diff);
 
@@ -44,45 +38,38 @@ class AppTest {
         assertEquals(expected, output.toString(StandardCharsets.UTF_8).trim());
     }
 
-    static Stream<Arguments> filePairsProvider() {
-        return Stream.of(
-            Arguments.of(
-                FIXTURES_PATH + "file1.json",
-                FIXTURES_PATH + "file2.json",
-                "diff1_2.txt",
-                Formatter.STYLISH
-            ),
-            Arguments.of(
-                FIXTURES_PATH + "file1.yaml",
-                FIXTURES_PATH + "file2.yaml",
-                "diff1_2.txt",
-                Formatter.STYLISH
-            ),
-            Arguments.of(
-                FIXTURES_PATH + COMPLEX + "file1.json",
-                FIXTURES_PATH + COMPLEX + "file2.json",
-                COMPLEX + "diff1_2.txt",
-                Formatter.STYLISH
-            ),
-            Arguments.of(
-                FIXTURES_PATH + COMPLEX + "file1.yaml",
-                FIXTURES_PATH + COMPLEX + "file2.yaml",
-                COMPLEX + "diff1_2.txt",
-                Formatter.STYLISH
-            ),
-            Arguments.of(
-                FIXTURES_PATH + COMPLEX + "file1.yaml",
-                FIXTURES_PATH + COMPLEX + "file2.yaml",
-                COMPLEX + "diff1_2_plain.txt",
-                Formatter.PLAIN
-            ),
-            Arguments.of(
-                FIXTURES_PATH + COMPLEX + "file1.yaml",
-                FIXTURES_PATH + COMPLEX + "file2.yaml",
-                COMPLEX + "diff1_2_json.txt",
-                Formatter.JSON
-            )
-        );
+    @Test
+    void test1() throws Exception {
+        testDiff(FIXTURES_PATH + "file1.json", FIXTURES_PATH + "file2.json", "diff1_2.txt", Formatter.STYLISH);
+    }
+
+    @Test
+    void test2() throws Exception {
+        testDiff(FIXTURES_PATH + "file1.yaml", FIXTURES_PATH + "file2.yaml", "diff1_2.txt", Formatter.STYLISH);
+    }
+
+    @Test
+    void test3() throws Exception {
+        testDiff(FIXTURES_PATH + COMPLEX + "file1.json", FIXTURES_PATH + COMPLEX + "file2.json",
+            COMPLEX + "diff1_2.txt", Formatter.STYLISH);
+    }
+
+    @Test
+    void test4() throws Exception {
+        testDiff(FIXTURES_PATH + COMPLEX + "file1.yaml", FIXTURES_PATH + COMPLEX + "file2.yaml",
+            COMPLEX + "diff1_2.txt", Formatter.STYLISH);
+    }
+
+    @Test
+    void test5() throws Exception {
+        testDiff(FIXTURES_PATH + COMPLEX + "file1.yaml", FIXTURES_PATH + COMPLEX + "file2.yaml",
+            COMPLEX + "diff1_2_plain.txt", Formatter.PLAIN);
+    }
+
+    @Test
+    void test6() throws Exception {
+        testDiff(FIXTURES_PATH + COMPLEX + "file1.yaml", FIXTURES_PATH + COMPLEX + "file2.yaml",
+            COMPLEX + "diff1_2_json.txt", Formatter.JSON);
     }
 
     private String readFixture(String fileName) throws IOException {
@@ -91,8 +78,6 @@ class AppTest {
 
     @Test
     void testFileDoesNotExist() {
-        assertThrows(Exception.class, () ->
-            App.main(new String[]{"non-existent.json", "file2.json"})
-        );
+        assertThrows(Exception.class, () -> App.main(new String[]{"non-existent.json", "file2.json"}));
     }
 }
