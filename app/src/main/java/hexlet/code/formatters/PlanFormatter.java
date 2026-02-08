@@ -25,7 +25,7 @@ public class PlanFormatter implements Format {
         default -> throw new UnsupportedOperationException("Unexpected status " + node.status());
       }
     }
-    return result.toString();
+    return result.toString().trim();
   }
 
   static String getValueString(Object value) {
