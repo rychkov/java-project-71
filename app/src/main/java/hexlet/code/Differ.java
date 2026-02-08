@@ -16,12 +16,12 @@ public class Differ {
   }
 
   public static String generate(String file1, String file2, String format) throws Exception {
-    System.out.println("File1 :" + file1);
-    System.out.println("File2 :" + file2);
+//    System.out.println("File1 :" + file1);
+//    System.out.println("File2 :" + file2);
     Map data1 = Parser.getData(getContent(file1));
-    System.out.println("Map1 " + data1);
+//    System.out.println("Map1 " + data1);
     Map data2 = Parser.getData(getContent(file2));
-    System.out.println("Map2 " + data2);
+//    System.out.println("Map2 " + data2);
 
     Set<String> keys = new TreeSet<>();
     keys.addAll(data1.keySet());
