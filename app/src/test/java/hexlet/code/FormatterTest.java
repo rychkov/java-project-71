@@ -12,9 +12,9 @@ class FormatterTest {
 
     @Test
     void testUnsupportedFormat() {
-          assertThrows(UnsupportedOperationException.class, () ->
-              Formatter.format(Collections.emptyList(), "invalid")
-          );
+        assertThrows(UnsupportedOperationException.class, () ->
+            Formatter.format(Collections.emptyList(), "invalid")
+        );
     }
 
     @ParameterizedTest
