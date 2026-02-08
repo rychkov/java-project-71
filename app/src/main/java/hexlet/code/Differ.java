@@ -1,5 +1,7 @@
 package hexlet.code;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,9 +18,9 @@ public class Differ {
   public static String generate(String file1, String file2, String format) throws Exception {
     System.out.println("File1 :" + file1);
     System.out.println("File2 :" + file2);
-    Map data1 = Parser.getData(file1);
+    Map data1 = Parser.getData(getContent(file1));
     System.out.println("Map1 " + data1);
-    Map data2 = Parser.getData(file2);
+    Map data2 = Parser.getData(getContent(file2));
     System.out.println("Map2 " + data2);
 
     Set<String> keys = new TreeSet<>();
@@ -47,5 +49,14 @@ public class Differ {
       }
     }
     return Formatter.format(diffList, format);
+  }
+
+  private static String getContent(String name) throws Exception {
+    Path path = Path.of(name);
+    if (!Files.exists(path)) {
+      throw new Exception("File '" + path + "' does not exist");
+    }
+
+    return Files.readString(path);
   }
 }

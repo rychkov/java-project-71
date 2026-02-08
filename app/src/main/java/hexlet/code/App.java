@@ -1,7 +1,5 @@
 package hexlet.code;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.concurrent.Callable;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
@@ -19,10 +17,10 @@ public class App implements Callable<Integer> {
   private String format;
 
   @Parameters(paramLabel = "filepath1", description = "path to first file")
-  private Path filepath1;
+  private String filepath1;
 
   @Parameters(paramLabel = "filepath2", description = "path to second file")
-  private Path filepath2;
+  private String filepath2;
 
   public static void main(String[] args) {
     int exitCode = new CommandLine(new App()).execute(args);
@@ -34,15 +32,7 @@ public class App implements Callable<Integer> {
    */
   @Override
   public Integer call() throws Exception {
-    System.out.println(Differ.generate(getContent(filepath1), getContent(filepath2), format));
+    System.out.println(Differ.generate(filepath1, filepath2, format));
     return 0;
-  }
-
-  private static String getContent(Path path) throws Exception {
-    if (!Files.exists(path)) {
-      throw new Exception("File '" + path + "' does not exist");
-    }
-
-    return Files.readString(path);
   }
 }
