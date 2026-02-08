@@ -8,6 +8,11 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class Differ {
+
+  public static String generate(String file1, String file2) throws Exception {
+    return generate(file1, file2, "stylish");
+  }
+
   public static String generate(String file1, String file2, String format) throws Exception {
     Map data1 = Parser.getData(file1);
     Map data2 = Parser.getData(file2);

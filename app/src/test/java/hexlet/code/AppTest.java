@@ -1,6 +1,7 @@
 package hexlet.code;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.util.stream.Stream;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -86,5 +88,12 @@ class AppTest {
 
   private String readFixture(String fileName) throws IOException {
     return Files.readString(Path.of(FIXTURES_PATH + fileName));
+  }
+
+  @Test
+  void testFileDoesNotExist() {
+    assertThrows(Exception.class, () ->
+        App.main(new String[]{"non-existent.json", "file2.json"})
+    );
   }
 }
