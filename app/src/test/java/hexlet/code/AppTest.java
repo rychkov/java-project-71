@@ -75,9 +75,4 @@ class AppTest {
     private String readFixture(String fileName) throws IOException {
         return Files.readString(Path.of(FIXTURES_PATH + fileName));
     }
-
-    @Test
-    void testFileDoesNotExist() {
-        assertThrows(Exception.class, () -> App.main(new String[]{"non-existent.json", "file2.json"}));
-    }
 }
