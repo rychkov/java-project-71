@@ -19,9 +19,9 @@ class FormatterTest {
 
   @ParameterizedTest
   @CsvSource({
-      "plain, ''",       // Ожидаем пустую строку для plain
-      "stylish, '{\n}'",   // Ожидаем пустые скобки для stylish
-      "json, '{\n  \"diff\" : [ ]\n}'"       // Ожидаем пустой массив для json
+      Formatter.PLAIN + ", ''",       // Ожидаем пустую строку для plain
+      Formatter.STYLISH + ", '{\n}'",   // Ожидаем пустые скобки для stylish
+      Formatter.JSON + ", '{\n  \"diff\" : [ ]\n}'"       // Ожидаем пустой массив для json
   })
   void testValidFormats(String format, String expectedOutput) throws Exception {
     String result = Formatter.format(Collections.emptyList(), format);

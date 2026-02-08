@@ -10,7 +10,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.stream.Stream;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -51,37 +50,37 @@ class AppTest {
             FIXTURES_PATH + "file1.json",
             FIXTURES_PATH + "file2.json",
             "diff1_2.txt",
-            "stylish"
+            Formatter.STYLISH
         ),
         Arguments.of(
             FIXTURES_PATH + "file1.yaml",
             FIXTURES_PATH + "file2.yaml",
             "diff1_2.txt",
-            "stylish"
+            Formatter.STYLISH
         ),
         Arguments.of(
             FIXTURES_PATH + COMPLEX + "file1.json",
             FIXTURES_PATH + COMPLEX + "file2.json",
             COMPLEX + "diff1_2.txt",
-            "stylish"
+            Formatter.STYLISH
         ),
         Arguments.of(
             FIXTURES_PATH + COMPLEX + "file1.yaml",
             FIXTURES_PATH + COMPLEX + "file2.yaml",
             COMPLEX + "diff1_2.txt",
-            "stylish"
+            Formatter.STYLISH
         ),
         Arguments.of(
             FIXTURES_PATH + COMPLEX + "file1.yaml",
             FIXTURES_PATH + COMPLEX + "file2.yaml",
             COMPLEX + "diff1_2_plain.txt",
-            "plain"
+            Formatter.PLAIN
         ),
         Arguments.of(
             FIXTURES_PATH + COMPLEX + "file1.yaml",
             FIXTURES_PATH + COMPLEX + "file2.yaml",
             COMPLEX + "diff1_2_json.txt",
-            "json"
+            Formatter.JSON
         )
     );
   }
