@@ -7,15 +7,15 @@ import java.util.Map;
 
 public class JsonFormatter implements Format {
 
-  private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-  public static final String DIFF_KEY = "diff";
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+    public static final String DIFF_KEY = "diff";
 
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public String format(List<DiffNode> diffList) throws Exception {
-    return OBJECT_MAPPER.writerWithDefaultPrettyPrinter()
-        .writeValueAsString(Map.of(DIFF_KEY, diffList));
-  }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String format(List<DiffNode> diffList) throws Exception {
+        return OBJECT_MAPPER.writerWithDefaultPrettyPrinter()
+            .writeValueAsString(Map.of(DIFF_KEY, diffList));
+    }
 }
