@@ -29,6 +29,14 @@ class AppTest {
         System.setOut(standardOut);
     }
 
+    void testDiffWithDefaultFormat(String file1, String file2, String diff) throws IOException {
+        String expected = readFixture(diff);
+
+        App.main(new String[]{file1, file2});
+
+        assertEquals(expected, output.toString(StandardCharsets.UTF_8).trim());
+    }
+
     void testDiff(String file1, String file2, String diff, String format) throws IOException {
         String expected = readFixture(diff);
 
@@ -69,6 +77,16 @@ class AppTest {
     void test6() throws Exception {
         testDiff(FIXTURES_PATH + COMPLEX + "file1.yaml", FIXTURES_PATH + COMPLEX + "file2.yaml",
             COMPLEX + "diff1_2_json.txt", Formatter.JSON);
+    }
+
+    @Test
+    void test7() throws Exception {
+        testDiffWithDefaultFormat(FIXTURES_PATH + "file1.json", FIXTURES_PATH + "file2.json", "diff1_2.txt");
+    }
+
+    @Test
+    void test8() throws Exception {
+        testDiffWithDefaultFormat(FIXTURES_PATH + "file1.yaml", FIXTURES_PATH + "file2.yaml", "diff1_2.txt");
     }
 
     private String readFixture(String fileName) throws IOException {
