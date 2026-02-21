@@ -2,6 +2,7 @@ package hexlet.code.formatters;
 
 import hexlet.code.DiffNode;
 import java.util.List;
+import java.util.Map;
 
 public class PlanFormatter implements Format {
 
@@ -34,9 +35,9 @@ public class PlanFormatter implements Format {
             return null;
         } else if (value instanceof String) {
             return "'%s'".formatted(value);
-        } else if (value instanceof Number || value instanceof Boolean) {
-            return value.toString();
+        } else if (value instanceof Map || value instanceof List || value instanceof Object[]) {
+            return COMPLEX_VALUE;
         }
-        return COMPLEX_VALUE;
+        return value.toString();
     }
 }

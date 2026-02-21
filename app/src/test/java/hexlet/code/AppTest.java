@@ -46,46 +46,56 @@ class AppTest {
     }
 
     @Test
-    void test1() throws Exception {
+    void testSimpleCaseJsonInput_StylishOutput() throws Exception {
         testDiff(FIXTURES_PATH + "file1.json", FIXTURES_PATH + "file2.json", "diff1_2.txt", Formatter.STYLISH);
     }
 
     @Test
-    void test2() throws Exception {
+    void testSimpleCaseYamlInput_StylishOutput() throws Exception {
         testDiff(FIXTURES_PATH + "file1.yaml", FIXTURES_PATH + "file2.yaml", "diff1_2.txt", Formatter.STYLISH);
     }
 
     @Test
-    void test3() throws Exception {
+    void testSimpleCaseJsonInput_JsonOutput() throws Exception {
+        testDiff(FIXTURES_PATH + "file1.json", FIXTURES_PATH + "file2.json", "diff1_2_json.txt", Formatter.JSON);
+    }
+
+    @Test
+    void testSimpleCaseYamlInput_JsonOutput() throws Exception {
+        testDiff(FIXTURES_PATH + "file1.yaml", FIXTURES_PATH + "file2.yaml", "diff1_2_json.txt", Formatter.JSON);
+    }
+
+    @Test
+    void testComplexCaseJsonInput_StylishOutput() throws Exception {
         testDiff(FIXTURES_PATH + COMPLEX + "file1.json", FIXTURES_PATH + COMPLEX + "file2.json",
             COMPLEX + "diff1_2.txt", Formatter.STYLISH);
     }
 
     @Test
-    void test4() throws Exception {
+    void testComplexCaseYamlInput_StylishOutput() throws Exception {
         testDiff(FIXTURES_PATH + COMPLEX + "file1.yaml", FIXTURES_PATH + COMPLEX + "file2.yaml",
             COMPLEX + "diff1_2.txt", Formatter.STYLISH);
     }
 
     @Test
-    void test5() throws Exception {
+    void testComplexCaseYamlInput_PlainOutput() throws Exception {
         testDiff(FIXTURES_PATH + COMPLEX + "file1.yaml", FIXTURES_PATH + COMPLEX + "file2.yaml",
             COMPLEX + "diff1_2_plain.txt", Formatter.PLAIN);
     }
 
     @Test
-    void test6() throws Exception {
+    void testComplexCaseYamlInput_JsonOutput() throws Exception {
         testDiff(FIXTURES_PATH + COMPLEX + "file1.yaml", FIXTURES_PATH + COMPLEX + "file2.yaml",
             COMPLEX + "diff1_2_json.txt", Formatter.JSON);
     }
 
     @Test
-    void test7() throws Exception {
+    void testSimpleCaseJsonInput_DefaultOutput() throws Exception {
         testDiffWithDefaultFormat(FIXTURES_PATH + "file1.json", FIXTURES_PATH + "file2.json", "diff1_2.txt");
     }
 
     @Test
-    void test8() throws Exception {
+    void testSimpleCaseYamlInput_DefaultOutput() throws Exception {
         testDiffWithDefaultFormat(FIXTURES_PATH + "file1.yaml", FIXTURES_PATH + "file2.yaml", "diff1_2.txt");
     }
 
